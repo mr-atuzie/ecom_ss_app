@@ -52,7 +52,7 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
-// login
+// login user
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
