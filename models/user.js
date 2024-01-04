@@ -1,16 +1,13 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
 const { ObjectId } = mongoose.Schema;
+const bcrypt = require("bcryptjs");
 
-const userSchema = mongoose.Schema(
+const userSchema = new mongoose.Schema(
   {
-    name: {
-      type: String,
-      required: [true, "Please add a name"],
-    },
+    name: { type: String, required: [true, "Please add a name."] },
     email: {
       type: String,
-      required: [true, "Please add a email"],
+      required: [true, "Please add a email."],
       unique: true,
       trim: true,
       match: [
@@ -22,7 +19,6 @@ const userSchema = mongoose.Schema(
       type: String,
       required: [true, "Please add a password"],
       minLength: [6, "Password must be up to 6 characters"],
-      //   maxLength: [23, "Password must not be more than 23 characters"],
     },
     role: {
       type: String,
@@ -43,29 +39,11 @@ const userSchema = mongoose.Schema(
       type: Object,
       // address, state, country
     },
-    wishlist: [{ type: ObjectId, ref: "Product" }],
-    balance: {
-      type: Number,
-      default: 0,
-    },
-    cartItems: {
-      type: [Object],
-    },
-    isVerified: {
-      type: Boolean,
-      default: false,
-    },
-    stripeCustomerId: {
-      type: String,
-      // required: true,
-    },
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true }
 );
 
-//   Encrypt password before saving to DB
+//Encrypt password before saving to DB
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
     return next();
