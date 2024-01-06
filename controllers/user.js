@@ -108,7 +108,9 @@ const logout = asyncHandler(async (req, res) => {
 
 //logout
 const getUser = asyncHandler(async (req, res) => {
-  res.send("get user");
+  const userid = req.user._id;
+
+  res;
 });
 
 module.exports = { registerUser, loginUser, logout, getUser };
