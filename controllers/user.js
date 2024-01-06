@@ -138,7 +138,22 @@ const getLoginStatus = asyncHandler(async (req, res) => {
 
 //update user
 const updateUser = asyncHandler(async (req, res) => {
-  res.send("update user");
+  const user = await User.findById(req.user._id).select("-password");
+
+  if (user) {
+    const { name, phone, address } = user;
+
+    user.name = req.body.name || name;
+    user.phone = req.body.phone || phone;
+    user.address = req.body.address || address;
+
+    const updatedUser = await user.save();
+
+    res.status(200).json(updatedUser);
+  } else {
+    res.status(400);
+    throw new Error("User not found");
+  }
 });
 
 module.exports = {
