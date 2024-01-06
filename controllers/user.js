@@ -156,6 +156,22 @@ const updateUser = asyncHandler(async (req, res) => {
   }
 });
 
+//update photo
+const updatePhoto = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id).select("-password");
+  const { photo } = req.body;
+
+  if (user) {
+    user.photo = photo;
+    const updatedUser = await user.save();
+
+    res.status(200).json(updatedUser);
+  } else {
+    res.status(400);
+    throw new Error("User not found");
+  }
+});
+
 module.exports = {
   registerUser,
   loginUser,
@@ -163,4 +179,5 @@ module.exports = {
   getUser,
   getLoginStatus,
   updateUser,
+  updatePhoto,
 };
