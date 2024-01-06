@@ -136,4 +136,16 @@ const getLoginStatus = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { registerUser, loginUser, logout, getUser, getLoginStatus };
+//update user
+const updateUser = asyncHandler(async (req, res) => {
+  res.send("update user");
+});
+
+module.exports = {
+  registerUser,
+  loginUser,
+  logout,
+  getUser,
+  getLoginStatus,
+  updateUser,
+};
