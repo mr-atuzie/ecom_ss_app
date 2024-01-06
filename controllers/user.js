@@ -116,8 +116,11 @@ const getUser = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("User not found");
   }
-
-  res;
 });
 
-module.exports = { registerUser, loginUser, logout, getUser };
+//login status
+const getLoginStatus = asyncHandler(async (req, res) => {
+  res.send("login status");
+});
+
+module.exports = { registerUser, loginUser, logout, getUser, getLoginStatus };
