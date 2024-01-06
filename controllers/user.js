@@ -106,9 +106,16 @@ const logout = asyncHandler(async (req, res) => {
   res.status(200).json("Successfully Logged Out");
 });
 
-//logout
+//get user
 const getUser = asyncHandler(async (req, res) => {
-  const userid = req.user._id;
+  const user = await User.findById(req.user._id).select("-password");
+
+  if (user) {
+    res.status(200).json(user);
+  } else {
+    res.status(400);
+    throw new Error("User not found");
+  }
 
   res;
 });
