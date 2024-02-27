@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const colors = require("colors");
 const connectDB = require("./config/db");
 const userRoute = require("./routes/user");
+const productRoute = require("./routes/product");
 const { errorHandler, notFound } = require("./middleware/errorMiddleware");
 
 const app = express();
@@ -15,13 +16,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: ["http://localhost:3000", "http://localhost:3001"],
     credentials: true,
   })
 );
 
 //Routes
 app.use("/api/v1/users", userRoute);
+app.use("/api/v1/products", productRoute);
 
 app.get("/", (req, res) => {
   res.send("Home page");
