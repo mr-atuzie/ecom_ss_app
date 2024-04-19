@@ -32,7 +32,7 @@ app.use("/api/v1/products", productRoute);
 app.use("/api/v1/jerry-portfolio", jerryRoute);
 
 app.get("/", (req, res) => {
-  res.send("Home page");
+  res.send("HELLO WORLD :{)");
 });
 
 //Error Middleware
