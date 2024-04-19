@@ -6,6 +6,7 @@ const colors = require("colors");
 const connectDB = require("./config/db");
 const userRoute = require("./routes/user");
 const productRoute = require("./routes/product");
+const jerryRoute = require("./routes/jerry");
 const { errorHandler, notFound } = require("./middleware/errorMiddleware");
 
 const app = express();
@@ -24,6 +25,7 @@ app.use(
 //Routes
 app.use("/api/v1/users", userRoute);
 app.use("/api/v1/products", productRoute);
+app.use("/api/v1/jerry-portfolio", jerryRoute);
 
 app.get("/", (req, res) => {
   res.send("Home page");
