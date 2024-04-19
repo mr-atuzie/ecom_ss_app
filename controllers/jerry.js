@@ -76,7 +76,15 @@ const addCategory = asyncHandler(async (req, res) => {
     throw new Error("Please fill in all required fields");
   }
 
-  const photo = await Category.create({ category });
+  const newCategory = await Category.create({ category });
+
+  res.status(201).json(newCategory);
+});
+
+const getCatgeory = asyncHandler(async (req, res) => {
+  const product = await Category.find({});
+
+  res.status(200).json(product);
 });
 
 const changePassword = asyncHandler(async (req, res) => {
@@ -107,4 +115,5 @@ module.exports = {
   deletePhoto,
   deleteVideo,
   changePassword,
+  getCatgeory,
 };
