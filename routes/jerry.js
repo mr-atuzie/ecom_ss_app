@@ -14,12 +14,15 @@ const {
 
 router.post("/category", addCategory);
 router.post("/photo", addPhoto);
-router.post("/photo", addVideo);
+router.post("/video", addVideo);
+
 router.get("/video", getVideos);
 router.get("/photo", getPhotos);
+
 router.get("/category", getCatgeory);
 router.delete("/photo", deletePhoto);
 router.delete("/video", deleteVideo);
+
 router.patch("/password", changePassword);
 
 module.exports = router;

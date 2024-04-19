@@ -5,14 +5,16 @@ const Category = require("../models/cat");
 const Jerry = require("../models/jerry");
 
 const addPhoto = asyncHandler(async (req, res) => {
-  const { name, category } = req.body;
+  const { url, category } = req.body;
 
-  if (!photo || !category) {
+  if (!url || !category) {
     res.status(400);
     throw new Error("Please fill in all required fields");
   }
 
-  const photo = await Photo.create({ name, category });
+  const photo = await Photo.create({ url, category });
+
+  res.status(201).json(photo);
 });
 
 const getPhotos = asyncHandler(async (req, res) => {
@@ -37,14 +39,16 @@ const deletePhoto = asyncHandler(async (req, res) => {
 });
 
 const addVideo = asyncHandler(async (req, res) => {
-  const { name, category } = req.body;
+  const { url, category } = req.body;
 
-  if (!photo || !category) {
+  if (!url || !category) {
     res.status(400);
     throw new Error("Please fill in all required fields");
   }
 
-  const photo = await Video.create({ name, category });
+  const video = await Video.create({ url, category });
+
+  res.status(201).json(video);
 });
 
 const getVideos = asyncHandler(async (req, res) => {

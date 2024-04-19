@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const photoSchema = new mongoose.Schema(
   {
-    name: {
+    url: {
       type: String,
       required: [true, "Please add product name"],
       trim: true,
