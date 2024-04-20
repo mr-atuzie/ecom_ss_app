@@ -1,6 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcrypt");
 const User = require("../models/user");
 
 const generateToken = (id) => {
@@ -96,26 +96,27 @@ const loginUser = asyncHandler(async (req, res) => {
 // login user
 const loginJerry = asyncHandler(async (req, res) => {
   const { password } = req.body;
+  const email = "jeremiah@gmail.com";
 
   if (!password) {
     res.status(400);
     throw new Error("Please fill in all required fields");
   }
 
-  const email = "jerry@gmail.com";
-
   //Validate user
-  const user = await User.find({ email });
+  const user = await User.findOne({ email });
 
   if (!user) {
     res.status(400);
     throw new Error("User does not exist, Please sign up.");
   }
 
-  //Validate password
+  // console.log(user.password);
+
+  // Validate password
   const checkPassword = await bcrypt.compare(password, user.password);
 
-  //Generate token
+  // //Generate token
   const token = generateToken(user._id);
 
   if (user && checkPassword) {
@@ -125,8 +126,8 @@ const loginJerry = asyncHandler(async (req, res) => {
       path: "/",
       httpOnly: true,
       expires: new Date(Date.now() + 1000 * 86400),
-      //   sameSite: "none",
-      //   secure: true,
+      sameSite: "none",
+      secure: true,
     });
 
     res.status(201).json(newUser);
