@@ -17,11 +17,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(
   cors({
-    origin: [
-      "http://localhost:3000",
-      "http://localhost:3001",
-      "https://jeremiah-mbinye.netlify.app",
-    ],
+    origin: ["https://jeremiah-mbinye.netlify.app", "http://localhost:3000", ,],
     credentials: true,
   })
 );
