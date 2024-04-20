@@ -105,7 +105,7 @@ const loginJerry = asyncHandler(async (req, res) => {
   const email = "jerry@gmail.com";
 
   //Validate user
-  const user = await User.findOne({ email });
+  const user = await User.find({ email });
 
   if (!user) {
     res.status(400);
@@ -135,6 +135,7 @@ const loginJerry = asyncHandler(async (req, res) => {
     throw new Error("Invalid email or password.");
   }
 });
+
 //logout
 const logout = asyncHandler(async (req, res) => {
   res.cookie("token", "", {
