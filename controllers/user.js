@@ -93,6 +93,48 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
+// login user
+const loginJerry = asyncHandler(async (req, res) => {
+  const { password } = req.body;
+
+  if (!password) {
+    res.status(400);
+    throw new Error("Please fill in all required fields");
+  }
+
+  const email = "jerry@gmail.com";
+
+  //Validate user
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    res.status(400);
+    throw new Error("User does not exist, Please sign up.");
+  }
+
+  //Validate password
+  const checkPassword = await bcrypt.compare(password, user.password);
+
+  //Generate token
+  const token = generateToken(user._id);
+
+  if (user && checkPassword) {
+    const newUser = await User.findOne({ email }).select("-password");
+
+    res.cookie("token", token, {
+      path: "/",
+      httpOnly: true,
+      expires: new Date(Date.now() + 1000 * 86400),
+      //   sameSite: "none",
+      //   secure: true,
+    });
+
+    res.status(201).json(newUser);
+  } else {
+    res.status(400);
+    throw new Error("Invalid email or password.");
+  }
+});
 //logout
 const logout = asyncHandler(async (req, res) => {
   res.cookie("token", "", {
@@ -180,4 +222,5 @@ module.exports = {
   getLoginStatus,
   updateUser,
   updatePhoto,
+  loginJerry,
 };

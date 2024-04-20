@@ -52,7 +52,7 @@ const addVideo = asyncHandler(async (req, res) => {
 });
 
 const getVideos = asyncHandler(async (req, res) => {
-  const product = await Video.find();
+  const product = await Video.find({});
 
   res.status(200).json(product);
 });
