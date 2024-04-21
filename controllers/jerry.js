@@ -22,6 +22,13 @@ const getPhotos = asyncHandler(async (req, res) => {
 
   res.status(200).json(product);
 });
+const filterPhoto = asyncHandler(async (req, res) => {
+  const { category } = req.body;
+
+  const product = await Photo.find({ category });
+
+  res.status(200).json(product);
+});
 
 const deletePhoto = asyncHandler(async (req, res) => {
   const photoId = req.params.id;
@@ -53,6 +60,14 @@ const addVideo = asyncHandler(async (req, res) => {
 
 const getVideos = asyncHandler(async (req, res) => {
   const product = await Video.find({});
+
+  res.status(200).json(product);
+});
+
+const filterVid = asyncHandler(async (req, res) => {
+  const { category } = req.body;
+
+  const product = await Video.find({ category });
 
   res.status(200).json(product);
 });
@@ -120,4 +135,6 @@ module.exports = {
   deleteVideo,
   changePassword,
   getCatgeory,
+  filterVid,
+  filterPhoto,
 };

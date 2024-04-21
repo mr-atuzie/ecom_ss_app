@@ -10,6 +10,9 @@ const {
   deleteVideo,
   changePassword,
   getCatgeory,
+  filter,
+  filterVid,
+  filterPhoto,
 } = require("../controllers/jerry");
 
 router.post("/category", addCategory);
@@ -19,6 +22,8 @@ router.post("/video", addVideo);
 router.get("/video", getVideos);
 router.get("/photo", getPhotos);
 router.get("/category", getCatgeory);
+router.get("/filter-vid", filterVid);
+router.get("/filter-photo", filterPhoto);
 
 router.delete("/photo", deletePhoto);
 router.delete("/video", deleteVideo);
