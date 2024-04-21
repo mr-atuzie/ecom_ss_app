@@ -22,8 +22,9 @@ router.post("/video", addVideo);
 router.get("/video", getVideos);
 router.get("/photo", getPhotos);
 router.get("/category", getCatgeory);
-router.get("/filter-vid", filterVid);
-router.get("/filter-photo", filterPhoto);
+
+router.post("/filter-vid", filterVid);
+router.post("/filter-photo", filterPhoto);
 
 router.delete("/photo", deletePhoto);
 router.delete("/video", deleteVideo);
