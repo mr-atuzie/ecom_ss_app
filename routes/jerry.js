@@ -10,7 +10,6 @@ const {
   deleteVideo,
   changePassword,
   getCatgeory,
-  filter,
   filterVid,
   filterPhoto,
 } = require("../controllers/jerry");
